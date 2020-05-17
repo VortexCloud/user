@@ -188,4 +188,9 @@ return [
     'cliRouter'         => [
         // 'disabledGroups' => ['demo', 'test'],
     ],
+    'consul' => [
+        'host' => config('CONSUL_ADDRESS'),
+        'port' => config('CONSUL_PORT'),
+        'timeout' => 5,
+    ],
 ];
