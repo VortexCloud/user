@@ -75,10 +75,19 @@ return [
     ],
     'db'                => [
         'class'    => Database::class,
-        'dsn'      => 'mysql:dbname=test;host=127.0.0.1',
+        'dsn'      => 'mysql:dbname=testin;host=172.20.0.7',
         'username' => 'root',
-        'password' => 'swoft123456',
+        'password' => 'secret',
         'charset' => 'utf8mb4',
+    ],
+    'db.pool' => [
+        'class'       => Pool::class,
+        'database'    => bean('db'),
+        'minActive'   => 25,
+        'maxActive'   => 35,
+        'maxWait'     => 0,
+        'maxWaitTime' => 0,
+        'maxIdleTime' => 60,
     ],
     'db2'               => [
         'class'      => Database::class,
@@ -131,6 +140,7 @@ return [
     ],
     'rpcServer'         => [
         'class' => ServiceServer::class,
+        'port'  => 18307,
     ],
     'wsServer'          => [
         'class'   => WebSocketServer::class,

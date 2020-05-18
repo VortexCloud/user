@@ -44,12 +44,12 @@ class RegisterServiceListener implements EventHandlerInterface
         $httpServer = $event->getTarget();
 
         $service = [
-            'ID'                => 'swoft',
-            'Name'              => 'swoft',
+            'ID'                => config('SERVICE_ID'),
+            'Name'              => config('SERVICE_NAME'),
             'Tags'              => [
-                'http'
+                'web'
             ],
-            'Address'           => '127.0.0.1',
+            'Address'           => config('SERVICE_ADDRESS'),
             'Port'              => $httpServer->getPort(),
             'Meta'              => [
                 'version' => '1.0'
@@ -63,7 +63,7 @@ class RegisterServiceListener implements EventHandlerInterface
 
 
         // Register
-//        $this->agent->registerService($service);
+        $this->agent->registerService($service);
 //        CLog::info('Swoft http register service success by consul!');
     }
 }

@@ -21,10 +21,12 @@ use Swoft\Db\Eloquent\Model;
  *
  * @since 2.0
  *
- * @Entity(table="user")
+ * @Entity(table="users",pool="db.pool")
  */
 class User extends Model
 {
+    protected $modelDateFormat = 'Y-m-d H:i:s';
+
     /**
      * @Id()
      *
@@ -44,9 +46,9 @@ class User extends Model
     /**
      * @Column()
      *
-     * @var int
+     * @var string
      */
-    private $age;
+    private $email;
 
     /**
      * @Column(hidden=true)
@@ -56,78 +58,25 @@ class User extends Model
     private $password;
 
     /**
-     * @Column(name="user_desc", prop="userDesc")
+     * @Column(name="remember_token", prop="rememberToken")
      *
      * @var string
      */
-    private $userDesc;
+    private $rememberToken;
 
     /**
-     * @Column(name="test_json", prop="testJson")
+     * @Column(name="created_at",prop="createdAt")
      *
-     * @var array|null
+     * @var string
      */
-    private $testJson;
+    private $createdAt;
 
     /**
-     * @param int|null $id
+     * @Column(name="updated_at",prop="updatedAt")
      *
-     * @return void
+     * @var string
      */
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return void
-     */
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @param int $age
-     *
-     * @return void
-     */
-    public function setAge(int $age): void
-    {
-        $this->age = $age;
-    }
-
-    /**
-     * @param string $password
-     *
-     * @return void
-     */
-    public function setPassword(string $password): void
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * @param string $userDesc
-     *
-     * @return void
-     */
-    public function setUserDesc(string $userDesc): void
-    {
-        $this->userDesc = $userDesc;
-    }
-
-    /**
-     * @param array|null $testJson
-     *
-     * @return void
-     */
-    public function setTestJson(?array $testJson): void
-    {
-        $this->testJson = $testJson;
-    }
+    private $updatedAt;
 
     /**
      * @return int|null
@@ -135,6 +84,14 @@ class User extends Model
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
     }
 
     /**
@@ -146,11 +103,27 @@ class User extends Model
     }
 
     /**
-     * @return int
+     * @param string $name
      */
-    public function getAge(): int
+    public function setName(string $name): void
     {
-        return $this->age;
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 
     /**
@@ -162,18 +135,60 @@ class User extends Model
     }
 
     /**
-     * @return string
+     * @param string $password
      */
-    public function getUserDesc(): string
+    public function setPassword(string $password): void
     {
-        return $this->userDesc;
+        $this->password = $password;
     }
 
     /**
-     * @return array|null
+     * @return string
      */
-    public function getTestJson(): ?array
+    public function getRememberToken(): string
     {
-        return $this->testJson;
+        return $this->rememberToken;
     }
+
+    /**
+     * @param string $rememberToken
+     */
+    public function setRememberToken(string $rememberToken): void
+    {
+        $this->rememberToken = $rememberToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreatedAt(): string
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param string $createdAt
+     */
+    public function setCreatedAt(string $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUpdatedAt(): string
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param string $updatedAt
+     */
+    public function setUpdatedAt(string $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+
 }
